@@ -15,7 +15,7 @@ const registerUser = async (req, res) => {
             return res.status(409).json({ message: "User already exists" });
         }
 const user =  await User.create({ 
-    email:email.toLowerCase(),
+    email: email.toLowerCase(),
     password
  })
   
@@ -24,6 +24,11 @@ const user =  await User.create({
         res.status(500).json({ message: "Error registering user", error });
     }
 };
- 
+
+// const getAllUser =async (req,res)=>{
+//     try{
+
+//     }
+// };
  
 export { registerUser };
