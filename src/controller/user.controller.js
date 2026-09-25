@@ -2,7 +2,7 @@ import {User} from "../model/User.model.js";
  
 const registerUser = async (req, res) => {
     try {
-        const { email, password } = req.body;
+        const { username, email, password } = req.body;
         
 
         res.status(201).json({ message: "User registered successfully" });
@@ -14,7 +14,8 @@ const registerUser = async (req, res) => {
         if (existingUser) {
             return res.status(409).json({ message: "User already exists" });
         }
-const user =  await User.create({ 
+const user =  await User.create({
+    username: username, 
     email: email.toLowerCase(),
     password
  })
