@@ -4,7 +4,6 @@ const registerUser = async (req, res) => {
     try {
         const { username, email, password } = req.body;
         
-
         res.status(201).json({ message: "User registered successfully" });
 
         if (!email || !password) {
