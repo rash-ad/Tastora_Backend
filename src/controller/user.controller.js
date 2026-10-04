@@ -96,10 +96,37 @@ const loginUser = async (req, res) => {
         });
     }
 };
+const logoutUser = async (req, res) => {
+    try {
+        const { email } = req.body;
+        const user = await User.findOne({
+            email
+        });
+
+        if (!user) {
+            return res.status(404).json({
+                message: "User not found"
+            });
+        }
+        return res.status(200).json({
+            message: "Logout successful"
+        });
+
+        
+    } catch (error) {
+        res.status(500).json({
+            message: "Error logging out",
+            error: error.message
+        });
+
+    }
+}
 
 
-export {
-    registerUser,
-    getAllUsers,
-    loginUser
-};
+
+    export {
+        registerUser,
+        getAllUsers,
+        loginUser,
+        logoutUser
+    };
