@@ -51,4 +51,16 @@ const updateFood = async (req, res) => {
     }
 };
 
-export { createFood, getAllFoods, getFoodById, updateFood };
+const deleteFood = async (req, res) => {
+    try {
+        const food = await Food.findByIdAndDelete(req.params.id);
+        if (!food) {
+            return res.status(404).json({ message: "Food not found" });
+        }
+
+        res.status(200).json({ message: "Food deleted successfully" });
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+}
+export { createFood, getAllFoods, getFoodById, updateFood, deleteFood };
